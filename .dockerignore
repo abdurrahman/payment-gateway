@@ -1,0 +1,20 @@
+# Git
+.git
+.gitignore
+
+# Build outputs
+**/bin
+**/obj
+
+# Test projects
+**/*.Tests
+**/*.Tests.*
+
+# IDE
+.vs
+.vscode
+*.user
+
+# Docker files themselves
+Dockerfile
+docker-compose.yml

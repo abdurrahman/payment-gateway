@@ -1,0 +1,21 @@
+namespace PaymentGateway.Api.Infrastructure.BankClient;
+
+using System.Text.Json.Serialization;
+
+public record BankPaymentRequest
+{
+    [JsonPropertyName("card_number")]
+    public required string CardNumber { get; init; }
+
+    [JsonPropertyName("expiry_date")]
+    public required string ExpiryDate { get; init; }
+
+    [JsonPropertyName("currency")]
+    public required string Currency { get; init; }
+
+    [JsonPropertyName("amount")]
+    public int Amount { get; init; }
+
+    [JsonPropertyName("cvv")]
+    public required string Cvv { get; init; }
+}

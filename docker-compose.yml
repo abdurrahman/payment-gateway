@@ -1,0 +1,38 @@
+services:
+  bank_simulator:
+    container_name: bank_simulator
+    image: bbyars/mountebank:2.8.1
+    ports:
+      - "2525:2525"
+      - "8080:8080"
+    command: --configfile /imposters/bank_simulator.ejs --allowInjection
+    volumes:
+      - type: bind
+        source: ./imposters
+        target: /imposters
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:2525"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  payment_gateway:
+    container_name: payment_gateway
+    build:
+      context: .
+      dockerfile: src/PaymentGateway.Api/Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_HTTP_PORTS=8081
+      - BankSimulator__BaseUrl=http://bank_simulator:8080
+    depends_on:
+      bank_simulator:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8081/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
