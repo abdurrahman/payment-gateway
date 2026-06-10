@@ -5,28 +5,31 @@ Payment Gateway backend solution.
 ## Template structure
 ```
 src/
-    PaymentGateway.Api - a skeleton ASP.NET Core Web API
+    PaymentGateway.Api - Payment gateway REST API
 test/
-    PaymentGateway.Api.Tests - an empty xUnit test project
-imposters/ - contains the bank simulator configuration. Don't change this
-
-.editorconfig - don't change this. It ensures a consistent set of rules for submissions when reformatting code
-CONTRIBUTING.MD
-docker-compose.yml - configures the bank simulator
+    PaymentGateway.Api.Tests - xUnit test project
+imposters/ - Bank simulator configuration (mountebank)
+docs/
+    design-decisions.md - Key architectural decisions and tradeoffs
+.dockerignore
+.editorconfig - Consistent code style rules for submissions
+.gitignore
+CONTRIBUTING.md
+docker-compose.yml - Wires gateway and bank simulator together
+nuget.config
 PaymentGateway.sln
+README.md
 ```
 
-## Table of contents
+## Table of Contents
 
-- Getting Started
-- Build
-- Database
-- Testing
-- Running Services in Docker
-- Design Decisions
-- Before Production
-- Contributing
-- Related Projects
+- [Getting Started](#getting-started)
+- [Build](#build)
+- [Testing](#testing)
+- [Running Services in Docker](#running-services-in-docker)
+- [Design Decisions](#design-decisions)
+- [Before Production](#before-production)
+- [Contributing](#contributing)
 
 ### Getting Started
 
